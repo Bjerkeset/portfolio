@@ -50,11 +50,7 @@ export function ContactForm() {
   }
 
   if (submitted) {
-    return (
-      <div className="text-center">
-        Thank you for your message! We'll get back to you soon.
-      </div>
-    );
+    return <div className="text-center">Thank you for your message!</div>;
   }
 
   return (
@@ -62,14 +58,13 @@ export function ContactForm() {
       <div className="pb-4 space-y-1">
         <h2 className="sm:text-xl md:text-2xl">Contact Me</h2>
         <p className="text-center text-sm md:text-base">
-          I&apos;d love to hear from you! Fill out the form below to get in
-          touch.
+          Hope to hear from you! Fill out the form below to get in touch.
         </p>
       </div>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex items-center gap-1 flex-col sm:flex-row hidden"
+          className=" items-center gap-1 flex-col sm:flex-row hidden"
         >
           <div className="w-full">
             <motion.div

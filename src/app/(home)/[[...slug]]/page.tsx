@@ -7,18 +7,18 @@ import { FaDiscord, FaLinkedin, FaGithub } from "react-icons/fa";
 import { BsArrowUpRight } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
 import AnimateTransition from "@/components/context/transition";
-import PostHogClient from "@/lib/utils/posthog/posthog";
+// import PostHogClient from "@/lib/utils/posthog/posthog";
 
 export default async function HomePage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const posthog = PostHogClient();
-  const flags = await posthog.getAllFlags(
-    "user_distinct_id", // replace with a user's distinct ID
-  );
-  await posthog.shutdown();
+  // const posthog = PostHogClient();
+  // const flags = await posthog.getAllFlags(
+  //   "user_distinct_id", // replace with a user's distinct ID
+  // );
+  // await posthog.shutdown();
 
   const style =
     "border rounded-2xl p-4 h-full bg-secondary/50 backdrop-blur-md grid-flow-row-dense border-ring/20 hover:bg-secondary/60 transition-colors duration-300 ";

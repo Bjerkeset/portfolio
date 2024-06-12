@@ -4,24 +4,10 @@ import { Noto_Sans_Display } from "next/font/google";
 import "../lib/style/globals.css";
 import { ThemeProvider } from "@/components/ui/next-theme-provider";
 import { cn } from "@/lib/utils";
-import localFont from "next/font/local";
 import { CSPostHogProvider } from "@/components/context/providers";
 import PostHogPageView from "@/components/context/PostHogPageView";
 
-const interUnused = Noto_Sans_Display({ subsets: ["latin"] });
-
-// // Configure Open Sauce One font
-const inter = localFont({
-  src: [
-    {
-      path: "../../public/fonts/open-sauce-one/OpenSauceOne-Regular.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    // Add other font weights and styles as needed
-  ],
-  display: "swap",
-});
+const inter = Noto_Sans_Display({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Bonds on Bitcoin",
@@ -44,13 +30,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* <Topbar /> */}
-          {/* <AnimateTransition> */}
-          <CSPostHogProvider>
-            <PostHogPageView />
-            {children}
-          </CSPostHogProvider>
-          {/* </AnimateTransition> */}
+          {/* <CSPostHogProvider> */}
+          {/* <PostHogPageView /> */}
+          {children}
+          {/* </CSPostHogProvider> */}
         </ThemeProvider>
       </body>
     </html>
