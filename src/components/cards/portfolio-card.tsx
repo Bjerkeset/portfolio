@@ -53,7 +53,7 @@ export default function PortfolioCard({
       </div>
       <div className="">
         <h2>Technologies</h2>
-        <ul className="flex gap-2 flex-wrap">
+        <ul className="flex gap-2 flex-wrap h-14">
           {technologies.map((tech, index) => (
             <li key={index}>
               <Badge className="bg-primary/50 border-border hover:bg-primary/50 pointer-events-none">
