@@ -195,16 +195,16 @@ function Projects() {
 
 const PROJECT_LINKS = [
   {
-    label: "Project 1",
-    url: "https://github.com/yourusername/project1",
+    label: "Year Two Exam",
+    url: "https://github.com/Bjerkeset/holidaze",
   },
   {
-    label: "Project 2",
-    url: "https://github.com/yourusername/project2",
+    label: "Semester Project Three",
+    url: "https://github.com/Bjerkeset/auction-house",
   },
   {
-    label: "Project 3",
-    url: "https://github.com/yourusername/project3",
+    label: "Year one Exam ",
+    url: "https://github.com/Bjerkeset/noroff-year-1-exam",
   },
 ];
 const FEATURE_LIST = [
