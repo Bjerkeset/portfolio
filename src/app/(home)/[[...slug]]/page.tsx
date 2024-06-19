@@ -7,23 +7,16 @@ import { FaDiscord, FaLinkedin, FaGithub } from "react-icons/fa";
 import { BsArrowUpRight } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
 import AnimateTransition from "@/components/context/transition";
-// import PostHogClient from "@/lib/utils/posthog/posthog";
+import Portfolio from "@/components/sections/portfolio";
+import { PiArrowUpRightThin } from "react-icons/pi";
 
 export default async function HomePage({
   params,
 }: {
   params: { slug: string };
 }) {
-  // const posthog = PostHogClient();
-  // const flags = await posthog.getAllFlags(
-  //   "user_distinct_id", // replace with a user's distinct ID
-  // );
-  // await posthog.shutdown();
-
   const style =
     "border rounded-2xl p-4 h-full bg-secondary/50 backdrop-blur-md grid-flow-row-dense border-ring/20 hover:bg-secondary/60 transition-colors duration-300 ";
-  const ExpandedStyle = "col-span-8 row-span-5";
-  const hiddenStyle = "hidden bg-green-400";
   const slug = params.slug && params.slug[0];
   let isPortfolioExpanded = false;
   if (slug === "portfolio") {
@@ -73,11 +66,13 @@ export default async function HomePage({
     portfolio: {
       component: (
         <Link href={"/portfolio"}>
-          <Portfolio isExpanded={isPortfolioExpanded} />
+          <PortfolioContainer isExpanded={isPortfolioExpanded} />
         </Link>
       ),
-      styles:
+      styles: cn(
         "col-span-4 xl:row-span-2 space-y-2 row-start-4 row-end-6 xl:col-span-3",
+        isPortfolioExpanded && "!col-span-4 !row-span-full xl:!col-span-8",
+      ),
     },
     hireMeButton: {
       component: <HireMeButton />,
@@ -93,15 +88,20 @@ export default async function HomePage({
 
   return (
     <>
-      <main className="px-2 mt-[10vh] pb-40 xl:max-w-screen-xl w-full grid grid-cols-4 max-w-screen-md xl:grid-cols-8 gap-4 auto-rows-[135px] text-secondary-foreground text-pretty">
+      <main
+        className={cn(
+          "px-2 mt-[10vh] pb-40 xl:max-w-screen-xl w-full grid  grid-cols-4 max-w-screen-md xl:grid-cols-8 gap-4  auto-rows-[135px] text-secondary-foreground text-pretty",
+          isPortfolioExpanded && "!auto-rows-auto",
+        )}
+      >
         {Object.entries(components).map(([key, item], index) => (
           <div
             key={index}
             className={cn(
               style,
               item.styles,
-              slug === "portfolio" && key !== "portfolio" && hiddenStyle,
-              slug === "portfolio" && key === "portfolio" && ExpandedStyle,
+              slug === "portfolio" && key !== "portfolio" && "!hidden",
+              slug === "portfolio" && key === "portfolio" && "",
             )}
           >
             <AnimateTransition>{item.component}</AnimateTransition>
@@ -117,12 +117,13 @@ export default async function HomePage({
 function Hero() {
   return (
     <section className="flex flex-col justify-around h-full">
-      <h1 className="text-3xl md:text-6xl">YOUR NAME</h1>
+      <h1 className="text-3xl md:text-6xl">B. Bjerkeset</h1>
       <div className="space-y-4">
         <p className="text:lg md:text-2xl">Welcome to My Portfolio</p>
         <p className="md:text-lg list-disc text-secondary-foreground opacity-75">
-          This is a brief introduction about yourself. Highlight your key skills
-          and experiences.
+          Passionate front-end developer skilled in modern web development
+          frameworks. Dedicated to creating responsive, user-friendly web
+          interfaces and staying current with industry trends.
         </p>
       </div>
       <div>
@@ -144,14 +145,11 @@ function AboutMe() {
   return (
     <>
       <h2 className="text-2xl text-secondary-foreground">ABOUT ME</h2>
-      <p className="opacity-75">
-        This section contains a brief bio about yourself. Talk about your
-        background, education, and interests.
-      </p>
+      <p className="opacity-75">More to come...</p>
     </>
   );
 }
-function Portfolio({ isExpanded }: { isExpanded: boolean }) {
+function PortfolioContainer({ isExpanded }: { isExpanded: boolean }) {
   return (
     <>
       <div className="flex justify-between items-center">
@@ -161,17 +159,10 @@ function Portfolio({ isExpanded }: { isExpanded: boolean }) {
             <RxCross1 className="border text-4xl rounded-full h-12 w-12 p-2 hover:bg-secondary hover:text-primary transition-colors duration-300" />
           </Link>
         ) : (
-          <BsArrowUpRight className="border text-4xl rounded-full h-12 w-12 p-2 hover:bg-secondary hover:text-primary transition-colors duration-300" />
+          <PiArrowUpRightThin className="border text-8xl rounded-full h-22 w-22 p-2 mr-1 hover:bg-secondary hover:text-primary hover:border-primary transition-colors duration-200" />
         )}
       </div>
-      <p>
-        This section showcases your portfolio projects. Each project can have a
-        brief description and links to more details or the live project.
-      </p>
-      <p className="text-sm opacity-75">
-        Provide details about the technologies used, your role in the project,
-        and any noteworthy accomplishments.
-      </p>
+      {isExpanded && <Portfolio />}
     </>
   );
 }

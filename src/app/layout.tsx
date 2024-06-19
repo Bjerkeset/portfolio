@@ -10,7 +10,7 @@ import PostHogPageView from "@/components/context/PostHogPageView";
 const inter = Noto_Sans_Display({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Bonds on Bitcoin",
+  title: "bjerkeset.dev",
   description: "",
 };
 
